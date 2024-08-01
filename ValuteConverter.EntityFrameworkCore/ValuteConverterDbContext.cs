@@ -8,6 +8,7 @@ public class ValuteConverterDbContext : DbContext
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<CurrencyCourse> CurrencyCourses { get; set; }
     public DbSet<Client> Clients { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
     public ValuteConverterDbContext(DbContextOptions options) : base(options)
     {
     }
@@ -34,6 +35,13 @@ public class ValuteConverterDbContext : DbContext
             a.Property(x => x.PersonalNumber).IsRequired().HasMaxLength(11);
             a.Property(x => x.RecomendatorPersonalNumber).IsRequired().HasMaxLength(11);
             a.Property(x => x.CreationDate).IsRequired();
+        });
+        modelBuilder.Entity<Transaction>(a =>
+        {
+            a.ToTable("Transactions", "CurrencyDB");
+            a.Property(x => x.CreationDate).IsRequired();
+            a.HasOne(x => x.ToSellCurrency).WithMany().HasForeignKey(x => x.ToSellCurrencyId);
+            a.HasOne(x => x.ToBuyCurrency).WithMany().HasForeignKey(x => x.ToBuyCurrencyId);
         });
         base.OnModelCreating(modelBuilder);
     }

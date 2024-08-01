@@ -2,7 +2,7 @@
 
 namespace ValuteConverter.Core.Services.Reports;
 
-public interface IReportServices
+public interface IReportService
 {
     public Task<ReportDto> GetReport(GetReportInputDto input);
 }

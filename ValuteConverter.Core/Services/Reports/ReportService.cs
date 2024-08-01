@@ -10,11 +10,11 @@ using ValuteConverter.Domain.Models;
 
 namespace ValuteConverter.Core.Services.Reports;
 
-public class ReportServices : IReportServices
+public class ReportService : IReportService
 {
     private readonly IRepository<Transaction> _transaction;
     private readonly IRepository<Client> _client;
-    public ReportServices(
+    public ReportService(
         IRepository<Transaction> transaction, 
         IRepository<Client> client)
     {

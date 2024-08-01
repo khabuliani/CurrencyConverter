@@ -7,6 +7,7 @@ using ValuteConverter.Core.Services.CurrencyCourseServices;
 using ValuteConverter.EntityFrameworkCore;
 using ValuteConverter.Core.Services.Transactions;
 using ValuteConverter.Core.Services.Reports;
+using ValuteConverter.Core.Services.CalulatorServices;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -24,7 +25,8 @@ builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 builder.Services.AddScoped<ICurrencyCourseService, CurrencyCourseService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ITransactionsServices, TransactionsServices>();
-builder.Services.AddScoped<IReportServices, ReportServices>();
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<ICalculatorService, CalculatorService>();
 
 var app = builder.Build();
 
