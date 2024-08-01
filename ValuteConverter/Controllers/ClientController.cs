@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ValueConverter.Shared.Paging;
 using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.ClientServices;
 

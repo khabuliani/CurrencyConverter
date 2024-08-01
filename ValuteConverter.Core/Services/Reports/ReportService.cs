@@ -20,7 +20,12 @@ public class ReportService : IReportService
     public async Task<ReportDto> GetReport(GetReportInputDto input)
     {
         var result = new ReportDto();
-        result.PersonalNumber = input.PersonalNumber;
+        var client = _client.FirstOrDefault(x => x.PersonalNumber == input.PersonalNumber);
+        if (client == null)
+        {
+            throw new Exception("Client not found");
+        }
+        result.PersonalNumber = client.PersonalNumber;
         var transactions = _transaction.GetAll()
                                             .WhereIf(input.StartDate != null, x => x.CreationDate >= input.StartDate)
                                             .WhereIf(input.EndDate != null, x => x.CreationDate <= input.EndDate);

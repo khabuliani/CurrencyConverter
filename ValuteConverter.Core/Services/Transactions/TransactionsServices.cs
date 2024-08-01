@@ -6,6 +6,7 @@ using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
 using ValuteConverter.Domain.Models;
 using Microsoft.Extensions.Configuration;
+using ValuteConverter.Core.Services.CalulatorServices;
 
 namespace ValuteConverter.Core.Services.Transactions;
 
@@ -15,21 +16,53 @@ public class TransactionsServices : ITransactionsServices
     private readonly IRepository<Transaction> _transaction;
     private readonly IMapper _mapper;
     private readonly IConfiguration _appConfiguration;
+    private readonly ICalculatorService _calculatorService;
 
     public TransactionsServices(
         IRepository<Transaction> transaction,
         IMapper mapper,
         IRepository<CurrencyCourse> currencyCourse,
-        IConfiguration appConfiguration)
+        IConfiguration appConfiguration,
+        ICalculatorService calculatorService)
     {
         _transaction = transaction;
         _mapper = mapper;
         _currencyCourse = currencyCourse;
         _appConfiguration = appConfiguration;
+        _calculatorService = calculatorService;
     }
 
     public async Task<TransactionResult> Create(TransactionDto input)
-    {
+    {  
+        var cal = new CalculatorDto()
+        {
+            ToBuy = input.ToBuy,
+            ToBuyCurrencyId = input.ToBuyCurrencyId,
+            ToSellCurrencyId = input.ToSellCurrencyId,
+            ToSell = input.ToSell,
+        };
+        var calculate = await _calculatorService.Calculate(cal);
+
+        if(input.ToSell == 0)
+        {
+            
+            input.ToSell = calculate.ToSell;
+        }
+        else
+        {
+            if (input.ToBuy == 0)
+            {
+                input.ToBuy = calculate.ToBuy;
+            }
+            else 
+            {
+                if (calculate.ToSell != input.ToSell || calculate.ToBuy != input.ToBuy)
+                {
+                    throw new Exception("Incorrect amount");
+                }
+            }
+        }
+
         if (input.CreatorClientId == null)
         {
             var course = _currencyCourse.FirstOrDefault(x => x.Id == input.ToBuyCurrencyId);
@@ -39,11 +72,11 @@ public class TransactionsServices : ITransactionsServices
                 throw new Exception("Currency not found");
             }
 
-            decimal price = course.SellingPrice * input.ToBuy;
+            decimal price = course.BuyingPrice * input.ToBuy;
 
             if (price > int.Parse(_appConfiguration["Limits:AnonimusLimit"]))
             {
-                return TransactionResult.NeedsClient;
+                throw new Exception("You can't buy that abount of Currency anonimus");
             }
         }
         else
@@ -52,7 +85,7 @@ public class TransactionsServices : ITransactionsServices
                                     .Where(x => x.CreatorClientId == input.CreatorClientId)
                                     .Where(x => x.CreationDate >= DateTime.Today).ToList();
             var courses = _currencyCourse.GetAll().ToList();
-            decimal price = courses.Single(x => x.Id == input.ToBuyCurrencyId).SellingPrice * input.ToBuy;
+            decimal price = courses.Single(x => x.Id == input.ToBuyCurrencyId).SellingPrice *(decimal) input.ToBuy;
 
             foreach (var t in transactions)
             {
@@ -61,9 +94,10 @@ public class TransactionsServices : ITransactionsServices
 
             if(price > int.Parse(_appConfiguration["Limits:DayLimit"]))
             {
-                return TransactionResult.DayLimit;
+                throw new Exception("You can't buy that abount of Currency per day");
             }
         }
+
         var transaction = _mapper.Map<Transaction>(input);
         transaction.CreationDate = DateTime.Now;
         input.Id = _transaction.InsertAndGetId(transaction);

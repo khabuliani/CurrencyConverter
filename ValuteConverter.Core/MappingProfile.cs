@@ -11,5 +11,6 @@ public class MappingProfile : Profile
         CreateMap<CurrencyDto, Currency>().ReverseMap();
         CreateMap<CurrencyCourseDto, CurrencyCourse>().ReverseMap();
         CreateMap<ClientDto, Client>().ReverseMap();
+        CreateMap<TransactionDto, Transaction>().ReverseMap();
     }
 }

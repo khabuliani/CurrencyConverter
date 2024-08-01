@@ -28,9 +28,15 @@ public class TransactionController : Controller
         return await _transactionsServices.Get(id);
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<PagedResultDto<TransactionDto>> GetAll(GetAlltransactionDto input)
     {
         return await _transactionsServices.GetAll(input);
+    }
+
+    [HttpPost]
+    public async Task<PagedResultDto<TransactionsDto>> GetAllTransactions(GetAlltransactionDto input)
+    {
+        return await _transactionsServices.GetAllTransactions(input);
     }
 }

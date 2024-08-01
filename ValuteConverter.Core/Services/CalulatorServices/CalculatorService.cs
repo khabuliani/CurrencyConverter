@@ -16,11 +16,11 @@ public class CalculatorService : ICalculatorService
     {
         if(input.ToSell == 0)
         {
-            return CalculateSell(input);
+            return CalculateBuy(input);
         }
         else
         {
-            return CalculateBuy(input);
+            return CalculateSell(input);
         }
     }
 
@@ -29,6 +29,7 @@ public class CalculatorService : ICalculatorService
         var courseToBuy = _currencyCourse.FirstOrDefault(x => x.Id == input.ToBuyCurrencyId);
         var courseToSell = _currencyCourse.FirstOrDefault(x => x.Id == input.ToSellCurrencyId);
         input.ToSell = (courseToBuy.BuyingPrice * input.ToBuy) / courseToSell.SellingPrice;
+        input.ToSell = Math.Round(input.ToSell, 2);
         return input;
     }
 
@@ -37,6 +38,7 @@ public class CalculatorService : ICalculatorService
         var courseToBuy = _currencyCourse.FirstOrDefault(x => x.Id == input.ToBuyCurrencyId);
         var courseToSell = _currencyCourse.FirstOrDefault(x => x.Id == input.ToSellCurrencyId);
         input.ToBuy = (courseToSell.SellingPrice * input.ToSell)/ courseToBuy.BuyingPrice;
+        input.ToBuy = Math.Round(input.ToBuy, 2);
         return input;
     }
 }

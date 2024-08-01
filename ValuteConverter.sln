@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuteConverter.Domain", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuteConverter.EntityFrameworkCore", "ValuteConverter.EntityFrameworkCore\ValuteConverter.EntityFrameworkCore.csproj", "{F8EA44D9-07B6-4D41-96AA-1E00F450F0D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValuteConverter.Web", "ValuteConverter.Web\ValuteConverter.Web.csproj", "{5CAF7DC1-8729-464D-9716-00035E661B86}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueConverter.Shared", "ValueConverter.Shared\ValueConverter.Shared.csproj", "{EEBC4656-4DCC-417C-AADE-6770427CB921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueConverter.Shared", "ValueConverter.Shared\ValueConverter.Shared.csproj", "{EEBC4656-4DCC-417C-AADE-6770427CB921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{F8EA44D9-07B6-4D41-96AA-1E00F450F0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8EA44D9-07B6-4D41-96AA-1E00F450F0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8EA44D9-07B6-4D41-96AA-1E00F450F0D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CAF7DC1-8729-464D-9716-00035E661B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CAF7DC1-8729-464D-9716-00035E661B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CAF7DC1-8729-464D-9716-00035E661B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CAF7DC1-8729-464D-9716-00035E661B86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEBC4656-4DCC-417C-AADE-6770427CB921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEBC4656-4DCC-417C-AADE-6770427CB921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEBC4656-4DCC-417C-AADE-6770427CB921}.Release|Any CPU.ActiveCfg = Release|Any CPU
