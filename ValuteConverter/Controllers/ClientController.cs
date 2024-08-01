@@ -33,7 +33,7 @@ public class ClientController : Controller
         return await _clientService.Get(id);
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<PagedResultDto<ClientDto>> GetAll(GetAllClientDto input)
     {
         return await _clientService.GetAll(input);

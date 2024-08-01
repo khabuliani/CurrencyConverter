@@ -4,5 +4,5 @@ namespace ValuteConverter.Domain.Dto;
 
 public class GetAllClientDto : PagedDto
 {
-    public string PersonalNumber { get; set; }
+    public string? PersonalNumber { get; set; }
 }

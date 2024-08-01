@@ -39,7 +39,7 @@ public class CurrencyController : Controller
         await _currencyAppService.Delete(id);
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<PagedResultDto<CurrencyDto>> GetAll(GetAllCurrencyDto input)
     {
         return await _currencyAppService.GetAll(input);
