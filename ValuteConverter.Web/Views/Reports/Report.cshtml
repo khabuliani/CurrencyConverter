@@ -1,0 +1,24 @@
+﻿@model ValuteConverter.Domain.Dto.ReportDto
+
+@{
+    ViewBag.Title = "Report Results";
+}
+
+<h2>Report Results</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Personal Number</th>
+            <th>Own Operations</th>
+            <th>All Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.PersonalNumber</td>
+            <td>@Model.OwnOperations</td>
+            <td>@Model.AllOperations</td>
+        </tr>
+    </tbody>
+</table>

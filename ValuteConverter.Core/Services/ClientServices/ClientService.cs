@@ -62,6 +62,17 @@ public class ClientService : IClientService
         return result;
     }
 
+    public async Task<ClientDto> GetByPersonalNumber(string personalNumber)
+    {
+        var oldClient = _client.FirstOrDefault(x => x.PersonalNumber == personalNumber);
+        if (oldClient == null)
+        {
+            throw new Exception("Client not found");
+        }
+        var result = _mapper.Map<ClientDto>(oldClient);
+        return result;
+    }
+
     public async Task<PagedResultDto<ClientDto>> GetAll(GetAllClientDto input)
     {
         var clients = _client.GetAll().WhereIf(input.PersonalNumber != null,x => x.PersonalNumber.Contains(input.PersonalNumber));

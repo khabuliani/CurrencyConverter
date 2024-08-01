@@ -44,4 +44,10 @@ public class CurrencyController : Controller
     {
         return await _currencyAppService.GetAll(input);
     }
+
+    [HttpPost]
+    public async Task<List<CurrencyDto>> GetAllList(GetAllCurrencyDto input)
+    {
+        return await _currencyAppService.GetAllList(input);
+    }
 }

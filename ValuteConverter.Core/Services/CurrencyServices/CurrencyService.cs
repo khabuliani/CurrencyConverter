@@ -77,4 +77,13 @@ public class CurrencyService : ICurrencyService
         result.Items = _mapper.Map<List<CurrencyDto>>(currencies.ToList());
         return result;
     }
+
+    public async Task<List<CurrencyDto>> GetAllList(GetAllCurrencyDto input)
+    {
+        var currencies = _currency.GetAll()
+                                        .WhereIf(input.Code != null,x => x.Code == input.Code)
+                                        .WhereIf(input.Name != null,x => x.Name.Contains(input.Name))
+                                        .WhereIf(input.NameLatin != null,x => x.NameLatin.Contains(input.NameLatin));
+        return _mapper.Map<List<CurrencyDto>>(currencies.ToList());
+    }
 }

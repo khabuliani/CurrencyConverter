@@ -1,0 +1,27 @@
+﻿@model ValuteConverter.Domain.Dto.CalculatorDto
+@{
+    ViewBag.Title = "Currency Calculator";
+}
+
+<h2>Currency Calculator</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ToSellCurrencyId)
+        @Html.DropDownListFor(m => m.ToSellCurrencyId, (SelectList)ViewBag.Currencies, "Select Currency", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ToSell)
+        @Html.TextBoxFor(m => m.ToSell, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ToBuyCurrencyId)
+        @Html.DropDownListFor(m => m.ToBuyCurrencyId, (SelectList)ViewBag.Currencies, "Select Currency", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ToBuy)
+        @Html.TextBoxFor(m => m.ToBuy, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+}

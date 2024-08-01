@@ -15,4 +15,5 @@ public interface ICurrencyService
     public Task Delete(int id);
 
     public Task<PagedResultDto<CurrencyDto>> GetAll(GetAllCurrencyDto input);
+    public Task<List<CurrencyDto>> GetAllList(GetAllCurrencyDto input);
 }

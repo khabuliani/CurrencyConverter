@@ -33,6 +33,12 @@ public class ClientController : Controller
         return await _clientService.Get(id);
     }
 
+    [HttpGet]
+    public async Task<ClientDto> GetByPersonalNumber(string personalNumber)
+    {
+        return await _clientService.GetByPersonalNumber(personalNumber);
+    }
+
     [HttpPost]
     public async Task<PagedResultDto<ClientDto>> GetAll(GetAllClientDto input)
     {

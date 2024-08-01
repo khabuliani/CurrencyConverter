@@ -1,0 +1,25 @@
+﻿@model ValuteConverter.Domain.Dto.CalculatorDto
+@{
+    ViewBag.Title = "Calculation Result";
+}
+
+<h2>Calculation Result</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>To Sell Currency Id</th>
+        <td>@Model.ToSellCurrencyId</td>
+    </tr>
+    <tr>
+        <th>To Sell</th>
+        <td>@Model.ToSell</td>
+    </tr>
+    <tr>
+        <th>To Buy Currency Id</th>
+        <td>@Model.ToBuyCurrencyId</td>
+    </tr>
+    <tr>
+        <th>To Buy</th>
+        <td>@Model.ToBuy</td>
+    </tr>
+</table>
