@@ -1,0 +1,41 @@
+﻿@model ValuteConverter.Domain.Dto.CurrencyCourseDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Currency Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrencyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrencyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellingPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellingPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyingPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyingPrice)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
