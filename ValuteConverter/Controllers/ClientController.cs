@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.ClientServices;
-using ValuteConverter.Domain.Dto;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Controllers;
 

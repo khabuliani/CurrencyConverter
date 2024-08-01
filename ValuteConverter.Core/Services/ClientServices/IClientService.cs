@@ -10,6 +10,7 @@ public interface IClientService
     public Task<ClientDto> Update(ClientDto input);
 
     public Task<ClientDto> Get(int id);
+
     public Task<ClientDto> GetByPersonalNumber(string personalNumber);
 
     public Task<PagedResultDto<ClientDto>> GetAll(GetAllClientDto input);

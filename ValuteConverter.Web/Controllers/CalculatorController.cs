@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.CalulatorServices;
 using ValuteConverter.Core.Services.CurrencyServices;
-using ValuteConverter.Domain.Dto;
 
 namespace ValuteConverter.Web.Controllers;
 

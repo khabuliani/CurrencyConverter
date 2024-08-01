@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ValueConverter.Shared\ValueConverter.Shared.csproj" />
     <ProjectReference Include="..\ValuteConverter.Core\ValuteConverter.Core.csproj" />
     <ProjectReference Include="..\ValuteConverter.EntityFrameworkCore\ValuteConverter.EntityFrameworkCore.csproj" />
   </ItemGroup>

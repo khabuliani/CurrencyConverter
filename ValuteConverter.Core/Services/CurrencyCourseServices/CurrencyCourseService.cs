@@ -24,10 +24,12 @@ public class CurrencyCourseService : ICurrencyCourseService
     public async Task<CurrencyCourseDto> Create(CurrencyCourseDto input)
     {
         var oldCurrency = _currencyCourse.FirstOrDefault(x => x.CurrencyId == input.CurrencyId);
+
         if (oldCurrency != null)
         {
             throw new Exception("Course with this currency already exists");
         }
+
         var client = _mapper.Map<CurrencyCourse>(input);
         client.CreationDate = DateTime.Now;
         input.Id = _currencyCourse.InsertAndGetId(client);
@@ -37,10 +39,12 @@ public class CurrencyCourseService : ICurrencyCourseService
     public async Task<CurrencyCourseDto> Update(CurrencyCourseDto input)
     {
         var oldCurrency = _currencyCourse.FirstOrDefault(x => x.Id == input.Id);
+
         if (oldCurrency == null)
         {
             throw new Exception("Currency not found");
         }
+
         oldCurrency.SellingPrice = input.SellingPrice;
         oldCurrency.BuyingPrice = input.BuyingPrice;
         _currencyCourse.Update(oldCurrency);
@@ -50,10 +54,12 @@ public class CurrencyCourseService : ICurrencyCourseService
     public async Task<CurrencyCourseDto> Get(int id)
     {
         var oldCurrency = _currencyCourse.GetAllIncluding(x => x.Currency).FirstOrDefault(x => x.Id == id);
+
         if (oldCurrency == null)
         {
             throw new Exception("Currency not found");
         }
+
         var result = _mapper.Map<CurrencyCourseDto>(oldCurrency);
         return result;
     }
@@ -61,10 +67,12 @@ public class CurrencyCourseService : ICurrencyCourseService
     public async Task Delete(int id)
     {
         var oldCurrency = _currencyCourse.FirstOrDefault(x => x.Id == id);
+
         if (oldCurrency == null)
         {
             throw new Exception("Currency not found");
         }
+
         _currencyCourse.Delete(id);
     }
 

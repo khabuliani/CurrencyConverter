@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.CurrencyCourseServices;
-using ValuteConverter.Core.Services.CurrencyServices;
-using ValuteConverter.Domain.Dto;
 
 namespace ValuteConverter.Web.Controllers
 {

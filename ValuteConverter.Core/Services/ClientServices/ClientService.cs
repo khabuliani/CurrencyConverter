@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ValueConverter.Shared.Paging;
 using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
@@ -20,10 +21,12 @@ public class ClientService : IClientService
     public async Task<ClientDto> Create(ClientDto input)
     {
         var oldClient = _client.FirstOrDefault(x => x.PersonalNumber == input.PersonalNumber);
+
         if (oldClient != null)
         {
             throw new Exception("Client with this Personal Number already exists");
         }
+
         var client = _mapper.Map<Client>(input);
         client.CreationDate = DateTime.Now;
         input.Id = _client.InsertAndGetId(client);
@@ -33,18 +36,22 @@ public class ClientService : IClientService
     public async Task<ClientDto> Update(ClientDto input)
     {
         var oldClient = _client.FirstOrDefault(x => x.Id == input.Id);
+
         if (oldClient == null)
         {
             throw new Exception("Client not found");
         }
+
         if (oldClient.PersonalNumber != input.PersonalNumber)
         {
             var otherClient = _client.FirstOrDefault(x => x.PersonalNumber == input.PersonalNumber);
+
             if (oldClient == null)
             {
                 throw new Exception("Client with this Personal Number already exists");
             }
         }
+
         oldClient.FirstName = input.FirstName;
         oldClient.LastName = input.LastName;
         oldClient.PersonalNumber = input.PersonalNumber;
@@ -56,10 +63,12 @@ public class ClientService : IClientService
     public async Task<ClientDto> Get(int id)
     {
         var oldClient = _client.FirstOrDefault(x => x.Id == id);
+
         if (oldClient == null)
         {
             throw new Exception("Client not found");
         }
+
         var result = _mapper.Map<ClientDto>(oldClient);
         return result;
     }
@@ -67,10 +76,12 @@ public class ClientService : IClientService
     public async Task<ClientDto> GetByPersonalNumber(string personalNumber)
     {
         var oldClient = _client.FirstOrDefault(x => x.PersonalNumber == personalNumber);
+
         if (oldClient == null)
         {
             throw new Exception("Client not found");
         }
+
         var result = _mapper.Map<ClientDto>(oldClient);
         return result;
     }

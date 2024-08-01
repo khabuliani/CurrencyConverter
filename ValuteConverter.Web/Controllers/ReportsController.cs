@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.Reports;
-using ValuteConverter.Domain.Dto;
 
 namespace ValuteConverter.Web.Controllers;
 

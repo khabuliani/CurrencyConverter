@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ValueConverter.Shared.Paging;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Services.CurrencyServices;
-using ValuteConverter.Domain.Dto;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Controllers;
 

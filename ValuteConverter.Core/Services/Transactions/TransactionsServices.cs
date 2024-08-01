@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
 using ValueConverter.Shared;
 using ValueConverter.Shared.Paging;
 using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
 using ValuteConverter.Domain.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace ValuteConverter.Core.Services.Transactions;
 
@@ -33,11 +33,14 @@ public class TransactionsServices : ITransactionsServices
         if (input.CreatorClientId == null)
         {
             var course = _currencyCourse.FirstOrDefault(x => x.Id == input.ToBuyCurrencyId);
+
             if (course == null) 
             {
                 throw new Exception("Currency not found");
             }
+
             decimal price = course.SellingPrice * input.ToBuy;
+
             if (price > int.Parse(_appConfiguration["Limits:AnonimusLimit"]))
             {
                 return TransactionResult.NeedsClient;
@@ -50,10 +53,12 @@ public class TransactionsServices : ITransactionsServices
                                     .Where(x => x.CreationDate >= DateTime.Today).ToList();
             var courses = _currencyCourse.GetAll().ToList();
             decimal price = courses.Single(x => x.Id == input.ToBuyCurrencyId).SellingPrice * input.ToBuy;
+
             foreach (var t in transactions)
             {
                 price += courses.Single(x => x.Id == t.ToBuyCurrencyId).SellingPrice  * t.ToBuy;
             }
+
             if(price > int.Parse(_appConfiguration["Limits:DayLimit"]))
             {
                 return TransactionResult.DayLimit;
@@ -68,10 +73,12 @@ public class TransactionsServices : ITransactionsServices
     public async Task<TransactionDto> Get(int id)
     {
         var transaction = _transaction.FirstOrDefault(x => x.Id == id);
+
         if (transaction == null)
         {
             throw new Exception("transaction not found");
         }
+
         var result = _mapper.Map<TransactionDto>(transaction);
         return result;
     }
