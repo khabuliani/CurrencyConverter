@@ -1,4 +1,4 @@
-﻿namespace ValuteConverter.Domain.Dto;
+﻿namespace ValuteConverter.Core.Dto;
 
 public class TransactionDto
 {
@@ -8,5 +8,4 @@ public class TransactionDto
     public int ToBuyCurrencyId { get; set; }
     public decimal ToBuy { get; set; }
     public int? CreatorClientId { get; set; }
-    public DateTime CreationDate { get; set; }
 }

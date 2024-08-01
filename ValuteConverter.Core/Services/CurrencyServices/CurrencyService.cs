@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using ValueConverter.Shared.Paging;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
 using ValuteConverter.Domain.Models;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Core.Services.CurrencyServices;
 
@@ -39,7 +39,9 @@ public class CurrencyService : ICurrencyService
         {
             throw new Exception("Currency not found");
         }
-        oldCurrency = _mapper.Map<Currency>(input);
+        oldCurrency.NameLatin = input.NameLatin;
+        oldCurrency.Name = input.Name;
+        oldCurrency.Code = input.Code;
         _currency.Update(oldCurrency);
         return input;
     }

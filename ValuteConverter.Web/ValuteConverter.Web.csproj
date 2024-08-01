@@ -14,8 +14,4 @@
     <ProjectReference Include="..\ValuteConverter.Core\ValuteConverter.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Transactions\" />
-  </ItemGroup>
-
 </Project>

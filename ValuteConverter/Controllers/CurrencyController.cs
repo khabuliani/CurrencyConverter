@@ -33,11 +33,11 @@ public class CurrencyController : Controller
         return await _currencyAppService.Get(id);
     }
 
-    [HttpDelete]
-    public async Task Delete(int id)
-    {
-        await _currencyAppService.Delete(id);
-    }
+    //[HttpDelete]
+    //public async Task Delete(int id)
+    //{
+    //    await _currencyAppService.Delete(id);
+    //}
 
     [HttpPost]
     public async Task<PagedResultDto<CurrencyDto>> GetAll(GetAllCurrencyDto input)

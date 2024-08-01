@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
+using ValueConverter.Shared;
+using ValueConverter.Shared.Paging;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
 using ValuteConverter.Domain.Models;
-using ValuteConverter.Domain.Shared;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Core.Services.Transactions;
 
@@ -88,6 +88,31 @@ public class TransactionsServices : ITransactionsServices
         result.TotalCount = currencies.Count();
         currencies = currencies.PageBy(input);
         result.Items = _mapper.Map<List<TransactionDto>>(currencies.ToList());
+        return result;
+    }
+
+    public async Task<PagedResultDto<TransactionsDto>> GetAllTransactions(GetAlltransactionDto input)
+    {
+        var currencies = _transaction.GetAllIncluding(x => x.ToBuyCurrency,x => x.ToSellCurrency, x => x.CreatorClient)
+                                        .WhereIf(input.PersonalNumber != null, x => x.CreatorClient.PersonalNumber == input.PersonalNumber)
+                                        .WhereIf(input.ToSellCurrencyId != null, x => x.ToSellCurrencyId == input.ToSellCurrencyId)
+                                        .WhereIf(input.ToBuyCurrencyId != null, x => x.ToBuyCurrencyId == input.ToBuyCurrencyId)
+                                        .WhereIf(input.StartDate != null, x => x.CreationDate >= input.StartDate)
+                                        .WhereIf(input.EndDate != null, x => x.CreationDate <= input.EndDate);
+        var result = new PagedResultDto<TransactionsDto>();
+        result.TotalCount = currencies.Count();
+        currencies = currencies.PageBy(input);
+        var query = from t in currencies
+                       select new TransactionsDto
+                       {
+                           Id = t.Id,
+                           SellCurrency = t.ToSellCurrency.Code,
+                           ToSell = t.ToSell,
+                           BuyCurrency = t.ToBuyCurrency.Code,
+                           ToBuy = t.ToBuy,
+                           CreatorClient = t.CreatorClientId == null? "":t.CreatorClient.PersonalNumber,
+                        };
+        result.Items = query.ToList();
         return result;
     }
 }

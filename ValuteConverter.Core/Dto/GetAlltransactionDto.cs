@@ -1,6 +1,6 @@
-﻿using ValuteConverter.Domain.Shared.Paging;
+﻿using ValueConverter.Shared.Paging;
 
-namespace ValuteConverter.Domain.Dto;
+namespace ValuteConverter.Core.Dto;
 
 public class GetAlltransactionDto : PagedDto
 {

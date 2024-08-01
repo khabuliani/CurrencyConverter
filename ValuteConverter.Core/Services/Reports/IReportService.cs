@@ -1,4 +1,4 @@
-﻿using ValuteConverter.Domain.Dto;
+﻿using ValuteConverter.Core.Dto;
 
 namespace ValuteConverter.Core.Services.Reports;
 

@@ -1,5 +1,5 @@
-﻿using ValuteConverter.Domain.Dto;
-using ValuteConverter.Domain.Shared.Paging;
+﻿using ValueConverter.Shared.Paging;
+using ValuteConverter.Core.Dto;
 
 namespace ValuteConverter.Core.Services.CurrencyServices;
 

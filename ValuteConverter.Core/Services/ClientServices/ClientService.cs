@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
 using ValuteConverter.Domain.Models;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Core.Services.ClientServices;
 
@@ -46,7 +45,10 @@ public class ClientService : IClientService
                 throw new Exception("Client with this Personal Number already exists");
             }
         }
-        oldClient = _mapper.Map<Client>(input);
+        oldClient.FirstName = input.FirstName;
+        oldClient.LastName = input.LastName;
+        oldClient.PersonalNumber = input.PersonalNumber;
+        oldClient.RecomendatorPersonalNumber = input.RecomendatorPersonalNumber;
         _client.Update(oldClient);
         return input;
     }

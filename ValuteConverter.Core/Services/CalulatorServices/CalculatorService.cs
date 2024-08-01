@@ -1,5 +1,5 @@
-﻿using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
+﻿using ValuteConverter.Core.Dto;
+using ValuteConverter.Core.Repositories;
 using ValuteConverter.Domain.Models;
 
 namespace ValuteConverter.Core.Services.CalulatorServices;

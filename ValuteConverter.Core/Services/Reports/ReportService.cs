@@ -1,6 +1,6 @@
 ﻿using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Domain.Models;
 
 namespace ValuteConverter.Core.Services.Reports;

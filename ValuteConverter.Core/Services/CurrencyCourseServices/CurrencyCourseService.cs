@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using ValueConverter.Shared.Paging;
+using ValuteConverter.Core.Dto;
 using ValuteConverter.Core.Extensions;
 using ValuteConverter.Core.Repositories;
-using ValuteConverter.Domain.Dto;
 using ValuteConverter.Domain.Models;
-using ValuteConverter.Domain.Shared.Paging;
 
 namespace ValuteConverter.Core.Services.CurrencyCourseServices;
 
@@ -41,7 +41,8 @@ public class CurrencyCourseService : ICurrencyCourseService
         {
             throw new Exception("Currency not found");
         }
-        oldCurrency = _mapper.Map<CurrencyCourse>(input);
+        oldCurrency.SellingPrice = input.SellingPrice;
+        oldCurrency.BuyingPrice = input.BuyingPrice;
         _currencyCourse.Update(oldCurrency);
         return input;
     }

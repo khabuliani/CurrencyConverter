@@ -1,4 +1,4 @@
-﻿namespace ValuteConverter.Domain.Dto;
+﻿namespace ValuteConverter.Core.Dto;
 
 public class CalculatorDto
 {

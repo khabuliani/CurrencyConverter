@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using ValuteConverter.Domain.Shared.Paging;
+using ValueConverter.Shared.Paging;
 
 namespace ValuteConverter.Core.Extensions;
 

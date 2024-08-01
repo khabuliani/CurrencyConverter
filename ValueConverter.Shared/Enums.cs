@@ -1,4 +1,4 @@
-﻿namespace ValuteConverter.Domain.Shared;
+﻿namespace ValueConverter.Shared;
 
 public enum TransactionResult
 {
