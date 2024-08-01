@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ValuteConverter.Core\ValuteConverter.Core.csproj" />
     <ProjectReference Include="..\ValuteConverter.Domain\ValuteConverter.Domain.csproj" />
   </ItemGroup>
 

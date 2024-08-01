@@ -6,6 +6,7 @@ using ValuteConverter.Core.Services.CurrencyCourseServices;
 using ValuteConverter.Core.Services.CurrencyServices;
 using ValuteConverter.Core.Services.Reports;
 using ValuteConverter.Core.Services.Transactions;
+using ValuteConverter.EntityFrameworkCore.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<ValuteConverterDbContext>(options =>

@@ -8,6 +8,7 @@ using ValuteConverter.EntityFrameworkCore;
 using ValuteConverter.Core.Services.Transactions;
 using ValuteConverter.Core.Services.Reports;
 using ValuteConverter.Core.Services.CalulatorServices;
+using ValuteConverter.EntityFrameworkCore.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

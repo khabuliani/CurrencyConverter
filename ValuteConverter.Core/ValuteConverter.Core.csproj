@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ValueConverter.Shared\ValueConverter.Shared.csproj" />
     <ProjectReference Include="..\ValuteConverter.Domain\ValuteConverter.Domain.csproj" />
-    <ProjectReference Include="..\ValuteConverter.EntityFrameworkCore\ValuteConverter.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

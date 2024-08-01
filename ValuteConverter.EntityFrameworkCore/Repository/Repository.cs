@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using ValuteConverter.EntityFrameworkCore;
+using ValuteConverter.Core.Repositories;
 
-namespace ValuteConverter.Core.Repositories
+namespace ValuteConverter.EntityFrameworkCore.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
