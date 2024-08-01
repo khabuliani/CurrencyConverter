@@ -25,6 +25,8 @@ public class ValuteConverterDbContext : DbContext
         modelBuilder.Entity<CurrencyCourse>(a =>
         {
             a.ToTable("CurrencyCourses", "CurrencyDB");
+            a.Property(x => x.BuyingPrice).IsRequired().HasColumnType("MONEY");
+            a.Property(x => x.SellingPrice).IsRequired().HasColumnType("MONEY");
             a.HasOne(x => x.Currency).WithOne().HasForeignKey<CurrencyCourse>(x => x.CurrencyId);
         });
         modelBuilder.Entity<Client>(a =>
@@ -39,9 +41,11 @@ public class ValuteConverterDbContext : DbContext
         modelBuilder.Entity<Transaction>(a =>
         {
             a.ToTable("Transactions", "CurrencyDB");
-            a.Property(x => x.CreationDate).IsRequired();
+            a.Property(x => x.ToSell).IsRequired().HasColumnType("MONEY");
+            a.Property(x => x.ToBuy).IsRequired().HasColumnType("MONEY");
             a.HasOne(x => x.ToSellCurrency).WithMany().HasForeignKey(x => x.ToSellCurrencyId);
             a.HasOne(x => x.ToBuyCurrency).WithMany().HasForeignKey(x => x.ToBuyCurrencyId);
+            a.HasOne(x => x.CreatorClient).WithMany().HasForeignKey(x => x.CreatorClientId);
         });
         base.OnModelCreating(modelBuilder);
     }

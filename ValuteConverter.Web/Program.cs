@@ -1,19 +1,17 @@
-using Microsoft.EntityFrameworkCore;
+using ValuteConverter.Core;
 using ValuteConverter.Core.Repositories;
+using ValuteConverter.Core.Services.CalulatorServices;
 using ValuteConverter.Core.Services.ClientServices;
 using ValuteConverter.Core.Services.CurrencyCourseServices;
 using ValuteConverter.Core.Services.CurrencyServices;
-using ValuteConverter.Core;
-using ValuteConverter.EntityFrameworkCore;
-using ValuteConverter.Core.Services.Transactions;
 using ValuteConverter.Core.Services.Reports;
-using ValuteConverter.Core.Services.CalulatorServices;
+using ValuteConverter.Core.Services.Transactions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ValuteConverterDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+//builder.Services.AddDbContext<ValuteConverterDbContext>(options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(config => config.AddProfile<MappingProfile>());
